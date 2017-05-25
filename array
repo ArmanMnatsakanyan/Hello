@@ -1,0 +1,88 @@
+package lesson10;
+
+public class DynamicArray<T extends Comparable<T>> implements list<T> {
+	
+	private int length;
+	private T[] items;
+	
+	public DynamicArray(){
+		length = 0;
+		items = (T[]) new Comparable[length];
+	}
+
+	@Override
+	public void add(T item) {
+		
+		length++;
+		T[] old = items;
+		items = (T[]) new Comparable [length];
+		for(int i = 0; i<length - 1; i++)
+			items[i] = old[i];
+		items[length-1] = item;
+		
+			
+		
+		
+	}
+
+	@Override
+	public int size() {
+		
+		return length;
+	}
+
+	@Override
+	public void remove(int index) {
+		
+		for (int i = index; i < length-1; i ++)
+			items[i] = items[i+1];
+		length--;
+			
+		
+					
+		
+		
+	}
+
+	@Override
+	public T get(int index) {
+		if(index < length)
+			return items[index];
+		return null;
+	}
+
+	@Override
+	public void set(T item, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insert(T item, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}
+package lesson10;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+
+		List<Integer> list = new DynamicArray();
+		for(int i = 0; i<10; i++)
+			list.add(i);
+		list.remove(5);
+		for(int i =0; i< list.size(); i++){
+			System.out.print(list.get(i));
+			System.out.print(", ");
+		}
+	
+
+	}
+
+}
